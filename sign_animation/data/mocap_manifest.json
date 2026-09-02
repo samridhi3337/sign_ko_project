@@ -1,0 +1,182 @@
+{
+  "animal": {
+    "file": "animal.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20A/SG%20ASL%20Animal%201%202023-7-2%20Upload/SG%20ASL%20Animal%201%202023-7-2%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "apple": {
+    "file": "apple.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20A/SG%20ASL%20Apple%201%202023-7-27%20Upload/SG%20ASL%20Apple%201%202023-7-27%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "appointment": {
+    "file": "appointment.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20A/SG%20ASL%20Appointment%201%202023-7-29%20Upload/SG%20ASL%20Appointment%201%202023-7-29%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "australia": {
+    "file": "australia.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20A/SG%20ASL%20Australia%201%202023-11-7%20Upload/SG%20ASL%20Australia%201%202023-11-7%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "bird": {
+    "file": "bird.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20B/SG%20ASL%20Bird%202024-4-23%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Bird%202024-4-23%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "black": {
+    "file": "black.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20B/SG%20ASL%20Black%202024-5-2%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Black%202024-5-2%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "blanket": {
+    "file": "blanket.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20B/SG%20ASL%20Blanket%202024-5-4%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Blanket%202024-5-4%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "bowling": {
+    "file": "bowling.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20B/SG%20ASL%20Bowling%202024-7-3%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Bowling%202024-7-3%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "brother": {
+    "file": "brother.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20B/SG%20ASL%20Brother%202024-8-5%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Brother%202024-8-5%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "buy": {
+    "file": "buy.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20B/SG%20ASL%20Buy%202%202024-9-5%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Buy%202%202024-9-5%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "california": {
+    "file": "california.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20California%202024-10-30%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20California%202024-10-30%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "carrot": {
+    "file": "carrot.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Carrot%202024-11-12%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Carrot%202024-11-12%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "champion": {
+    "file": "champion.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Champion%202024-12-11%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Champion%202024-12-11%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "chat": {
+    "file": "chat.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Chat%202024-12-24%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Chat%202024-12-24%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "cheat": {
+    "file": "cheat.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Cheat%20Alt%202024-12-27%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Cheat%20Alt%202024-12-27%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "check": {
+    "file": "check.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Check%202024-12-31%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Check%202024-12-31%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "child": {
+    "file": "child.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Child%202025-1-9%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Child%202025-1-9%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "city": {
+    "file": "city.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20City%202025-2-15%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20City%202025-2-15%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "class": {
+    "file": "class.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Class%202025-2-22%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Class%202025-2-22%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "cold": {
+    "file": "cold.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Cold%202025-3-8%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Cold%202025-3-8%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "corn": {
+    "file": "corn.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Corn%202025-7-17%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Corn%202025-7-17%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "country": {
+    "file": "country.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Country%202025-8-14%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Country%202025-8-14%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "cousin": {
+    "file": "cousin.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Cousin%202025-8-27%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Cousin%202025-8-27%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "crash": {
+    "file": "crash.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20C/SG%20ASL%20Crash%202025-9-13%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Crash%202025-9-13%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "danger": {
+    "file": "danger.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20D/SG%20ASL%20Danger%202025-12-30%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Danger%202025-12-30%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "future": {
+    "file": "future.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20F/SG%20ASL%20Future%202025-7-23%20Upload/FBX%20Files/Mixamo/SG%20ASL%20Future%202025-7-23%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "hello": {
+    "file": "hello.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20H/SG%20ASL%20Hello%202024-6-9%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Hello%202024-6-9%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "please": {
+    "file": "please.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20P/SG%20ASL%20Please%202024-10-13%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Please%202024-10-13%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "take": {
+    "file": "take.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20T/SG%20ASL%20Take%202%202024-10-14%20Upload/FBX%20Files/Game%20Ready/SG%20ASL%20Take%202%202024-10-14%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  },
+  "you": {
+    "file": "you.fbx",
+    "source_url": "https://raw.githubusercontent.com/StudioGalt/Sign-Language-Mocap-Archive/main/SG%20ASL%20Dictionary/ASL%20Y/SG%20ASL%20You%202025-7-22%20Upload/FBX%20Files/Mixamo/SG%20ASL%20You%202025-7-22%20No%20Mesh%20Mixamo.fbx",
+    "source_repo": "https://github.com/StudioGalt/Sign-Language-Mocap-Archive",
+    "license": "CC0-1.0"
+  }
+}

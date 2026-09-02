@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Recognition | SignBridge</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="brand-top-bar">
+        <span>✦ <strong>SignBridge</strong> Recognition Engine</span>
+        <span class="tagline">— Real-Time Computer Vision & Landmark Gesture Recognition</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo-container">
+            <span class="logo-icon">🤟</span>
+            <div class="logo-text-group">
+                <span class="logo-title">SignBridge</span>
+                <span class="logo-subtitle">Bridging Communication Through Sign</span>
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recognition" class="active">Recognition</a></li>
+            <li><a href="/text-to-sign">Text to Sign</a></li>
+            <li><a href="/sign-animation">Sign Animation</a></li>
+            <li><a href="/word-dictionary">Word Dictionary</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mode Selector Section -->
+    <section class="about-home" style="padding-bottom: 10px;">
+        <h2>Sign Recognition Studio</h2>
+        <p>Choose between single-letter fingerspelling or full-word motion recognition.</p>
+
+        <div class="tab-container">
+            <button onclick="showRecognitionTab('alphabet')" id="tabBtnAlphabet" class="active-tab">
+                <i class="fa-solid fa-font"></i> Alphabet-wise
+            </button>
+            <button onclick="showRecognitionTab('word')" id="tabBtnWord" class="inactive-tab">
+                <i class="fa-solid fa-spell-check"></i> Word-wise
+            </button>
+        </div>
+    </section>
+
+    <!-- ================= ALPHABET-WISE MODE ================= -->
+    <div id="alphabetWisePane" class="main-wrapper">
+        <div class="feature-card" id="alphabet-level-section">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+                <div>
+                    <h3>Alphabet Recognition <small style="color: #4F46E5;">(Fingerspelling Mode)</small></h3>
+                    <p style="color: #64748B; font-size: 14px; margin: 0;">
+                        Recognizes single letters, holds steady to commit letters into words, and captures facial expressions.
+                    </p>
+                </div>
+
+                <button onclick="startAlphabetRecognition()" class="primary">
+                    <i class="fa-solid fa-camera"></i> Start Alphabet Recognition
+                </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 24px;">
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Current Letter</span>
+                    <div id="alphaLetter" class="output-badge">Waiting...</div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Signer Expression</span>
+                    <div id="alphaExpression" class="output-badge" style="color: #EC4899;">Neutral 😐</div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Current Word</span>
+                    <div id="alphaWord" class="output-badge" style="color: #0EA5E9;">Waiting...</div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px; grid-column: span 2;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Sentence Output</span>
+                    <div id="alphaSentence" class="output-badge" style="width: 100%; text-align: left; background: #FFFFFF;">Waiting...</div>
+                </div>
+            </div>
+
+            <h4 style="margin-top: 24px; font-size: 15px; color: #334155;">Captured Facial Expressions</h4>
+            <div id="alphaExpressions" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; min-height: 50px; background: #F1F5F9; padding: 12px; border-radius: 12px;"></div>
+        </div>
+    </div>
+
+    <!-- ================= WORD-WISE MODE ================= -->
+    <div id="wordWisePane" class="main-wrapper" style="display: none;">
+        <!-- 220-Word Motion-Aware Recognition Card -->
+        <div class="feature-card" id="word-level-section">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; margin-bottom: 20px;">
+                <div>
+                    <h3>220-Word Motion Sign Recognition <small style="color: #4F46E5;">(WLASL 220-Word Vocabulary)</small></h3>
+                    <p style="color: #64748B; font-size: 14px; margin: 0;">
+                        Recognizes complete dynamic hand actions, movements, finger positions, and timing across all 220 sign-language words.
+                    </p>
+                </div>
+
+                <button onclick="startWordRecognition()" class="primary">
+                    <i class="fa-solid fa-camera"></i> Start 220-Word Motion Recognition
+                </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Predicted Word</span>
+                    <div id="wordPrediction" class="output-badge">Waiting...</div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Signer Expression</span>
+                    <div id="wordExpression" class="output-badge" style="color: #EC4899;">Neutral 😐</div>
+                </div>
+
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 12px;">
+                    <span style="font-size: 12px; font-weight: 700; color: #64748B; text-transform: uppercase;">Sentence Output</span>
+                    <div id="wordSentence" class="output-badge" style="color: #0EA5E9;">Waiting...</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 24px;">
+                <h4 style="font-size: 15px; color: #334155; margin-bottom: 10px;">Dataset Reference Video</h4>
+                <video id="wordReferenceVideo" width="260" controls preload="none" style="background:#000; border-radius: 12px; display:none; border: 1px solid #CBD5E1;"></video>
+                <p id="wordReferenceNone" style="color:#94A3B8; font-size: 14px;">No reference video playing yet.</p>
+            </div>
+
+            <div id="wordEmergencyBox" class="emergency-alert-card">
+                <h2>🚨 EMERGENCY DISTRESS SIGN DETECTED 🚨</h2>
+                <p style="font-size: 16px; margin-bottom: 10px;"><b>Recognized Word:</b> <span id="wordEmergencyWord" style="font-weight: 800; color: #DC2626;"></span></p>
+                <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 12px; font-weight: 600; font-size: 14px;">
+                    <span>🔊 Alarm: ACTIVE</span>
+                    <span>📱 Notification: SENT</span>
+                    <span>📍 GPS Location: SHARED</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                🤟 SignBridge <small style="font-weight: normal; font-size: 13px; color: #64748B;">| Bridging Communication Through Sign</small>
+            </div>
+            <div class="footer-text">
+                © 2026 SignBridge — Real-Time Sign Language Recognition Engine
+            </div>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/recognition.js') }}"></script>
+    <script>
+        // Synchronize active styling on mode tabs
+        function updateTabStyles(mode) {
+            const btnAlpha = document.getElementById("tabBtnAlphabet");
+            const btnWord = document.getElementById("tabBtnWord");
+            if (mode === 'alphabet') {
+                btnAlpha.className = 'active-tab';
+                btnWord.className = 'inactive-tab';
+            } else {
+                btnAlpha.className = 'inactive-tab';
+                btnWord.className = 'active-tab';
+            }
+        }
+        const originalShowTab = window.showRecognitionTab;
+        window.showRecognitionTab = function(mode) {
+            if (typeof originalShowTab === 'function') originalShowTab(mode);
+            updateTabStyles(mode);
+        };
+    </script>
+</body>
+</html>

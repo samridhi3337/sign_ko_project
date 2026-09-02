@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Dictionary | SignBridge</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="brand-top-bar">
+        <span>✦ <strong>SignBridge</strong> Motion Dictionary</span>
+        <span class="tagline">— 220 Authentic ASL Motion Clipse & Video References</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/" class="logo-container">
+            <span class="logo-icon">🤟</span>
+            <div class="logo-text-group">
+                <span class="logo-title">SignBridge</span>
+                <span class="logo-subtitle">Bridging Communication Through Sign</span>
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recognition">Recognition</a></li>
+            <li><a href="/text-to-sign">Text to Sign</a></li>
+            <li><a href="/sign-animation">Sign Animation</a></li>
+            <li><a href="/word-dictionary" class="active">Word Dictionary</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <section class="about-home" style="padding-top: 20px; padding-bottom: 20px;">
+            <h2>ASL Sign Motion Dictionary</h2>
+            <p>
+                Browse all <strong>{{ words|length }}</strong> sign words in our dataset. Each word features a real WLASL video clip.
+                Filter words below, or click any sign to translate it instantly in Text-to-Sign.
+            </p>
+
+            <div style="position: relative; max-width: 480px; margin: 24px auto 10px;">
+                <input type="text" id="wordSearch" placeholder="🔍 Search vocabulary words..." oninput="filterWords()" style="width: 100%; padding: 14px 20px; font-size: 16px; border-radius: var(--radius-full); box-shadow: var(--shadow-sm);">
+            </div>
+
+            <p id="resultCount" style="color: var(--color-primary); font-weight: 600; font-size: 14px; min-height: 20px;"></p>
+        </section>
+
+        <!-- Word Cards Grid -->
+        <div id="wordGrid" class="word-grid-container">
+            {% for word in words %}
+                <div class="word-card" data-word="{{ word }}">
+                    <video controls preload="none">
+                        <source src="{{ url_for('word_clip', word=word) }}" type="video/mp4">
+                    </video>
+                    <div class="word-title">{{ word }}</div>
+                    <a href="/text-to-sign" onclick="sessionStorage.setItem('prefillWord', '{{ word }}')" class="action-link">
+                        Use in Text-to-Sign →
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                🤟 SignBridge <small style="font-weight: normal; font-size: 13px; color: #64748B;">| Bridging Communication Through Sign</small>
+            </div>
+            <div class="footer-text">
+                © 2026 SignBridge — 220-Word Dataset Sign Motion Dictionary
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterWords() {
+            const query = document.getElementById("wordSearch").value.trim().toLowerCase();
+            const cards = document.querySelectorAll(".word-card");
+            let visible = 0;
+
+            cards.forEach(card => {
+                const word = card.dataset.word.toLowerCase();
+                const match = word.includes(query);
+                card.style.display = match ? "" : "none";
+                if (match) visible++;
+            });
+
+            document.getElementById("resultCount").innerText =
+                query ? `${visible} of {{ words|length }} words match "${query}"` : "";
+        }
+    </script>
+</body>
+</html>

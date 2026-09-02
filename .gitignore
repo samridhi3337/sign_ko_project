@@ -1,0 +1,29 @@
+# Python environments
+.venv/
+.venv_mms/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Temporary files
+mms_player_temp/
+*.tmp
+
+# OS / IDE
+.DS_Store
+.vscode/
+.idea/
+
+# Personal/generated files
+PyWhatKit_DB.txt
+
+# Large datasets / archives
+dataset/
+dictionary/
+dictionary.zip
+final_forR2.zip
+
+# Training data
+data.csv
+*.zip

@@ -1,0 +1,44 @@
+# Sign language recognition project - Python dependencies.
+#
+# Install into a dedicated virtual environment so this project never
+# mixes with any other (sign-language or otherwise) project's Python
+# packages:
+#
+#   python3 -m venv .venv
+#   source .venv/bin/activate      # (Windows: .venv\Scripts\activate)
+#   pip install -r requirements.txt
+#
+# These exact versions were verified together on this machine
+# (macOS 13, Apple Silicon, Python 3.10) -- they matter more than they
+# look:
+#   - mediapipe==0.10.21 is the newest release that (a) still ships the
+#     classic `mediapipe.solutions` Python API used throughout this
+#     project (newer 0.10.3x / 1.0.x builds dropped it) and (b) has a
+#     native library that actually loads on macOS < 14 (the very
+#     newest builds require macOS 14+ and fail with
+#     "Symbol not found: __libcpp_verbose_abort").
+#   - tensorflow-macos==2.13.0 is pinned because it's the newest
+#     TensorFlow whose protobuf requirement (>=4.25.3,<5) overlaps
+#     mediapipe==0.10.21's (>=4.25.3,<5) -- newer TensorFlow pulls a
+#     protobuf major version mediapipe can't load, and older mediapipe
+#     needs protobuf<4 which no current TensorFlow provides.
+#   - numpy==1.24.3 / opencv-python==4.10.0.84 are pinned to match what
+#     tensorflow-macos==2.13.0 requires (opencv's newest major version
+#     requires numpy>=2, which conflicts with it).
+#
+# If you ever change one of these, re-verify the whole combination
+# (`python -c "import mediapipe as mp; mp.solutions.holistic.Holistic()"`
+# and `python -c "import tensorflow as tf; from tensorflow import keras"`)
+# before assuming it still works.
+
+flask
+numpy==1.24.3
+opencv-python==4.10.0.84
+mediapipe==0.10.21
+# tensorflow-macos is Apple Silicon/macOS specific. On Windows/Linux,
+# replace this one line with: tensorflow==2.13.0
+tensorflow-macos==2.13.0
+scikit-learn
+pandas
+pygame
+pywhatkit

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Avatar Sign Animation | SignBridge</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/cwasa/cwasa.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        #avatarCanvasWrap, #cwasaAvatarWrap {
+            width: 100%;
+            max-width: 720px;
+            height: 480px;
+            margin: 20px auto;
+            border: 1px solid #CBD5E1;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: linear-gradient(180deg, #E0E7FF 0%, #EEF2FF 100%);
+            box-shadow: var(--shadow-lg);
+        }
+        #cwasaAvatarWrap { display: none; position: relative; }
+        #cwasaAvatarWrap .CWASAAvatar { width: 100%; height: 100%; }
+        #cwasaAvatarWrap .CWASAGUI { display: none; }
+        #cwasaNotice {
+            display: none;
+            max-width: 720px;
+            margin: 0 auto 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #15803D;
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-radius: var(--radius-md);
+            padding: 8px 14px;
+        }
+        #glossDisplay {
+            max-width: 720px;
+            margin: 14px auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+        .gloss-token {
+            padding: 6px 14px;
+            border-radius: 16px;
+            background: #E2E8F0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+        }
+        .gloss-token.word { background: #DBEAFE; color: #1E40AF; }
+        .gloss-token.fingerspell { background: #FFEDD5; color: #9A3412; letter-spacing: 1px; }
+        .gloss-token.active { background: #4F46E5; color: #FFFFFF; font-weight: 700; box-shadow: 0 2px 8px rgba(79, 70, 229, 0.4); }
+        .gloss-token.mocap { border: 1.5px solid #059669; }
+        .mocap-badge { color: #059669; margin-left: 4px; font-size: 11px; }
+        .gloss-token.active .mocap-badge { color: #A7F3D0; }
+        .gloss-sentence-break { width: 100%; height: 0; }
+        .gloss-unsigned {
+            padding: 6px 14px;
+            border-radius: 16px;
+            background: #FEF2F2;
+            border: 1px dashed #FCA5A5;
+            color: #991B1B;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="brand-top-bar">
+        <span>✦ <strong>SignBridge</strong> 3D Avatar Engine</span>
+        <span class="tagline">— Real 220-Word Mocap Dataset Retargeting Studio</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/" class="logo-container">
+            <span class="logo-icon">🤟</span>
+            <div class="logo-text-group">
+                <span class="logo-title">SignBridge</span>
+                <span class="logo-subtitle">Bridging Communication Through Sign</span>
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recognition">Recognition</a></li>
+            <li><a href="/text-to-sign">Text to Sign</a></li>
+            <li><a href="/sign-animation" class="active">Sign Animation</a></li>
+            <li><a href="/word-dictionary">Word Dictionary</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <section class="feature-card" style="text-align: center; max-width: 900px; margin: 0 auto 30px;">
+            <h2 style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--color-text-main); margin-bottom: 8px;">
+                3D Sign Language Avatar Studio
+            </h2>
+            <p style="color: var(--color-text-muted); font-size: 15px; margin-bottom: 24px;">
+                Type any text or sentence. It compiles into sign gloss sequence and plays fluidly through our 3D avatar using real captured sign-language motion from the 220-word dataset.
+            </p>
+
+            <textarea id="animInput" rows="3"
+                      style="width: 100%; max-width: 650px; padding: 14px 18px; font-size: 16px; display: block; margin: 0 auto 16px; border-radius: var(--radius-md);"
+                      placeholder="e.g. Hello, how are you? I need water.">Hello, please stay</textarea>
+
+            <button id="animateBtn" class="primary" style="padding: 12px 36px;">
+                <i class="fa-solid fa-play"></i> Animate Avatar
+            </button>
+
+            <div id="glossDisplay"></div>
+
+            <p id="mocapLegend" style="text-align:center; color:#059669; font-size:13px; font-weight:600; display:none; margin-top: 8px;">
+                ✦ = Real professional motion-capture data applied to avatar joints
+            </p>
+
+            <p id="animStatus" style="text-align:center; color: var(--color-text-muted); font-weight: 600; font-size: 15px; margin-top: 10px; min-height: 24px;"></p>
+
+            <p id="cwasaNotice">
+                ✦ Signed via CWASA (University of East Anglia Virtual Humans Group), using real ASL data from the open-source Kozha project.
+            </p>
+        </section>
+
+        <!-- Avatar Canvas Container -->
+        <div id="avatarCanvasWrap"></div>
+        <div id="cwasaAvatarWrap">
+            <div class="CWASAAvatar av0"></div>
+            <div class="CWASAGUI av0"></div>
+        </div>
+
+        <!-- Prominent Playback & Speed Controls -->
+        <div id="playbackControls" style="text-align:center; margin: 20px auto; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px; max-width: 720px; background: #FFFFFF; padding: 16px 24px; border-radius: var(--radius-lg); border: 1px solid var(--color-border); box-shadow: var(--shadow-md);">
+            <button id="playPauseBtn" class="secondary" style="padding: 8px 18px; font-weight: 700;">
+                <i class="fa-solid fa-pause"></i> Pause
+            </button>
+
+            <button id="replayBtn" class="secondary" style="padding: 8px 18px; font-weight: 700;">
+                <i class="fa-solid fa-rotate-right"></i> Replay
+            </button>
+
+            <!-- Speed Control Preset Buttons (Slow / Normal / Fast) -->
+            <div class="speed-control-group" style="display:inline-flex; align-items:center; gap:4px; background:#F1F5F9; padding:4px 6px; border-radius:24px; border:1px solid #CBD5E1;">
+                <span style="font-size:13px; font-weight:700; color:#334155; margin: 0 4px 0 8px;">Speed:</span>
+                <button type="button" class="speed-btn" data-speed="0.5" style="padding:6px 14px; border-radius:18px; border:none; background:transparent; cursor:pointer; font-size:13px; font-weight:600; color:#334155; transition:all 0.15s;">Slow (0.5x)</button>
+                <button type="button" class="speed-btn active" data-speed="1.0" style="padding:6px 14px; border-radius:18px; border:none; background:#4F46E5; color:#ffffff; cursor:pointer; font-size:13px; font-weight:700; transition:all 0.15s; box-shadow:0 2px 4px rgba(79,70,229,0.3);">Normal (1.0x)</button>
+                <button type="button" class="speed-btn" data-speed="1.5" style="padding:6px 14px; border-radius:18px; border:none; background:transparent; cursor:pointer; font-size:13px; font-weight:600; color:#334155; transition:all 0.15s;">Fast (1.5x)</button>
+            </div>
+
+            <label style="display:inline-flex; align-items:center; gap:6px; font-size:13px; color:#475569; font-weight:600;">
+                <input type="range" id="speedSlider" min="0.5" max="2" step="0.1" value="1" style="vertical-align:middle; cursor:pointer;">
+                <span id="speedLabel" style="font-weight:700; min-width:36px; color:#0F172A;">1.0x</span>
+            </label>
+        </div>
+
+        <p style="max-width:600px; margin:16px auto 40px; font-size:13px; color:#64748B; text-align: center;">
+            ✦ 3D avatar animated from real captured motion data across the 220-word vocabulary and alphabet dataset. Drag to rotate the camera angle.
+        </p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                🤟 SignBridge <small style="font-weight: normal; font-size: 13px; color: #64748B;">| Bridging Communication Through Sign</small>
+            </div>
+            <div class="footer-text">
+                © 2026 SignBridge — 3D Avatar Sign Animation Engine
+            </div>
+        </div>
+    </footer>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "/static/js/vendor/three.module.js"
+        }
+    }
+    </script>
+    <script type="module" src="{{ url_for('static', filename='js/sign_animation.js') }}"></script>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | SignBridge</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="brand-top-bar">
+        <span>✦ About <strong>SignBridge</strong></span>
+        <span class="tagline">— Bridging Communication Through Sign Language Technology</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/" class="logo-container">
+            <span class="logo-icon">🤟</span>
+            <div class="logo-text-group">
+                <span class="logo-title">SignBridge</span>
+                <span class="logo-subtitle">Bridging Communication Through Sign</span>
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recognition">Recognition</a></li>
+            <li><a href="/text-to-sign">Text to Sign</a></li>
+            <li><a href="/sign-animation">Sign Animation</a></li>
+            <li><a href="/word-dictionary">Word Dictionary</a></li>
+            <li><a href="/about" class="active">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <section class="feature-card" style="max-width: 860px; margin: 0 auto 30px;">
+            <h2 style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--color-text-main); margin-bottom: 16px;">
+                About SignBridge
+            </h2>
+            <p style="color: var(--color-text-muted); font-size: 16px; line-height: 1.7; margin-bottom: 30px;">
+                <strong>SignBridge</strong> is a dual-directional sign-language AI platform combining live camera-based ASL alphabet and word recognition with a 3D avatar that performs real, captured sign-language motion from a 220-word vocabulary dataset for typed text.
+            </p>
+
+            <h3 style="font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--color-text-main); border-bottom: 1px solid #E2E8F0; padding-bottom: 10px; margin-bottom: 20px;">
+                Credits & Third-Party Datasets
+            </h3>
+
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px;">
+                    <h4 style="font-size: 16px; font-weight: 700; color: var(--color-primary); margin-bottom: 8px;">
+                        Word-Level Recognition & Avatar Motion Capture
+                    </h4>
+                    <ul style="padding-left: 20px; color: var(--color-text-muted); font-size: 14px; line-height: 1.6;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>WLASL</strong> (Word-Level American Sign Language Video Dataset) — source clips for word recognition and our 220-word avatar animation dataset.
+                        </li>
+                        <li style="margin-bottom: 8px;">
+                            <strong>Ready Player Me</strong> — the avatar's rigged 3D mesh (<code>Feminine.fbx</code>), sourced from Ready Player Me's open-source repository (MIT licensed).
+                        </li>
+                        <li>
+                            <strong>Studio Galt Sign Language Mocap Archive</strong> — real professional motion-capture ASL clips (Xsens suit + finger-tracking gloves) for a subset of dataset words (CC0-1.0).
+                        </li>
+                    </ul>
+                </div>
+
+                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 20px; border-radius: 14px;">
+                    <h4 style="font-size: 16px; font-weight: 700; color: var(--color-primary); margin-bottom: 8px;">
+                        Kozha / CWASA (Sign Rendering Path)
+                    </h4>
+                    <ul style="padding-left: 20px; color: var(--color-text-muted); font-size: 14px; line-height: 1.6;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>CWASA</strong> (Character/Web Avatar Signing Agent) — 3D signing engine developed by Virtual Humans Group, University of East Anglia.
+                        </li>
+                        <li style="margin-bottom: 8px;">
+                            <strong>Kozha</strong> — open-source text/HamNoSys/SiGML pipeline bundling CWASA (MIT licensed).
+                        </li>
+                        <li>
+                            <strong>ASL-LEX 2.0</strong> — sign data source covering 14 ASL signs and A-Z fingerspelling (CC BY-NC 4.0).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                🤟 SignBridge <small style="font-weight: normal; font-size: 13px; color: #64748B;">| Bridging Communication Through Sign</small>
+            </div>
+            <div class="footer-text">
+                © 2026 SignBridge — Technology Stack: Python, Flask, OpenCV, MediaPipe, Three.js & Machine Learning
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

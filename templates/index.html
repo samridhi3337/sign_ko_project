@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignBridge | Bidirectional Sign Language Translation Platform</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="brand-top-bar">
+        <span>✦ Welcome to <strong>SignBridge</strong></span>
+        <span class="tagline">— Real-Time SIGN ⇄ TEXT Dual-Directional Translation Platform</span>
+    </div>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav>
+        <a href="/" class="logo-container">
+            <span class="logo-icon">🤟</span>
+            <div class="logo-text-group">
+                <span class="logo-title">SignBridge</span>
+                <span class="logo-subtitle">Bridging Communication Through Sign</span>
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/recognition">Sign → Text</a></li>
+            <li><a href="/text-to-sign">Text → Sign</a></li>
+            <li><a href="/sign-animation">3D Avatar</a></li>
+            <li><a href="/word-dictionary">Word Dictionary</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-badge">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Dual-Directional Sign AI
+            </div>
+
+            <h1>
+                Bidirectional <br><span class="gradient-text">Sign Language Translation</span>
+            </h1>
+
+            <p>
+                SignBridge seamlessly translates <strong>SIGN → TEXT</strong> in real time via live camera tracking
+                and <strong>TEXT → SIGN</strong> using 3D avatar animations powered by a 220-word motion capture dataset.
+            </p>
+
+            <div class="buttons">
+                <a href="/recognition" class="primary">
+                    <i class="fa-solid fa-camera"></i>
+                    SIGN → TEXT
+                </a>
+
+                <a href="/text-to-sign" class="secondary">
+                    <i class="fa-solid fa-language"></i>
+                    TEXT → SIGN
+                </a>
+
+                <a href="/sign-animation" class="secondary" style="border-color:#C7D2FE; color:#4F46E5;">
+                    <i class="fa-solid fa-cube"></i>
+                    3D Avatar Studio
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-right">
+            <div style="position: relative;">
+                <img src="{{ url_for('static', filename='images/hero.png') }}" alt="SignBridge Sign Language Translation AI" style="border-radius: 20px; box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.25); border: 1px solid #E0E7FF;">
+                <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(8px); padding: 10px 18px; border-radius: 12px; border: 1px solid #CBD5E1; font-size: 13px; font-weight: 600; color: #1E293B; display: flex; align-items: center; gap: 8px;">
+                    <span style="width: 8px; height: 8px; background: #10B981; border-radius: 50%; display: inline-block;"></span> Live 3D Hand Landmark Tracking Active
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= TRANSLATION WORKFLOW SHOWCASE ================= -->
+    <section style="max-width: 1200px; margin: 40px auto; padding: 0 24px;">
+        <div style="text-align: center; margin-bottom: 36px;">
+            <span style="font-size: 13px; font-weight: 700; color: #4F46E5; text-transform: uppercase; letter-spacing: 1px;">Core Translation Pipeline</span>
+            <h2 style="font-size: 32px; font-weight: 800; color: #0F172A; margin-top: 6px;">Two-Way Communication Engine</h2>
+            <p style="color: #64748B; max-width: 600px; margin: 8px auto 0;">Connecting signers and non-signers with real-time computer vision and 3D avatar motion synthesis.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 28px;">
+            <!-- Mode 1: SIGN -> TEXT -->
+            <div class="card" style="text-align: left; position: relative; overflow: hidden; padding: 32px;">
+                <div style="width: 48px; height: 48px; background: #EEF2FF; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #4F46E5; font-size: 20px; margin-bottom: 20px;">
+                    <i class="fa-solid fa-hand"></i>
+                </div>
+                <h3 style="font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 10px;">SIGN → TEXT Recognition</h3>
+                <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                    Translates live camera gestures into text sentences. Supports single-letter fingerspelling (A–Z) and 220-word motion sequence recognition paired with real-time facial expression tracking.
+                </p>
+                <a href="/recognition" style="color: #4F46E5; font-weight: 700; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;">
+                    Open Sign Recognizer <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <!-- Mode 2: TEXT -> SIGN -->
+            <div class="card" style="text-align: left; position: relative; overflow: hidden; padding: 32px;">
+                <div style="width: 48px; height: 48px; background: #E0F2FE; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #0284C7; font-size: 20px; margin-bottom: 20px;">
+                    <i class="fa-solid fa-language"></i>
+                </div>
+                <h3 style="font-size: 20px; font-weight: 700; color: #0F172A; margin-bottom: 10px;">TEXT → SIGN Animation</h3>
+                <p style="color: #64748B; font-size: 14px; line-height: 1.6; margin-bottom: 20px;">
+                    Converts written text sentences into sign glosses and renders continuous 3D avatar animations with custom speed controls (0.5x, 1.0x, 1.5x) and precise joint retargeting.
+                </p>
+                <a href="/text-to-sign" style="color: #0284C7; font-weight: 700; text-decoration: none; font-size: 14px; display: inline-flex; align-items: center; gap: 6px;">
+                    Open Text Translator <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURE SHOWCASE BANNER ================= -->
+    <section style="max-width: 1200px; margin: 50px auto; padding: 0 24px;">
+        <div style="background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 100%); border-radius: 24px; padding: 40px; color: #FFFFFF; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 32px; align-items: center;">
+            <div>
+                <span style="background: rgba(99, 102, 241, 0.2); color: #818CF8; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; border: 1px solid rgba(129, 140, 248, 0.3);">3D AVATAR ENGINE</span>
+                <h2 style="font-size: 30px; font-weight: 800; margin-top: 14px; line-height: 1.2;">Natural 3D Sign Language Avatar Studio</h2>
+                <p style="color: #94A3B8; font-size: 15px; margin-top: 12px; line-height: 1.6;">
+                    Driven by the downloaded 220-word motion capture dataset on <code>avatar_feminine.fbx</code>. Supports precise fingerspelling, arm positioning, and real-time playback speed control.
+                </p>
+                <div style="margin-top: 24px; display: flex; gap: 14px; flex-wrap: wrap;">
+                    <a href="/sign-animation" class="primary" style="background: #4F46E5; border: none;">
+                        <i class="fa-solid fa-cube"></i> Launch 3D Studio
+                    </a>
+                    <a href="/word-dictionary" class="secondary" style="color: #FFFFFF; border-color: rgba(255,255,255,0.2); background: transparent;">
+                        <i class="fa-solid fa-book"></i> View 220 Words
+                    </a>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <img src="{{ url_for('static', filename='images/text_to_sign_hero.png') }}" alt="Text to Sign 3D Avatar Translation" style="border-radius: 16px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section class="cards">
+        <div class="card">
+            <i class="fa-solid fa-hand"></i>
+            <h2>Computer Vision Tracking</h2>
+            <p>Real-time hand gesture classification powered by OpenCV and MediaPipe landmark normalization.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-face-smile"></i>
+            <h2>Facial Expression AI</h2>
+            <p>Detects signer sentiment (Happy, Sad, Surprised, Focused, Neutral) in real time alongside signs.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <h2>Emergency Alerts</h2>
+            <p>Triggers emergency alarms, WhatsApp distress messaging, and GPS location sharing for help signs.</p>
+        </div>
+
+        <div class="card">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <h2>220-Word WLASL Dataset</h2>
+            <p>Comprehensive motion library connected directly to searchable dataset clips and 3D motions.</p>
+        </div>
+    </section>
+
+    <!-- ================= STATISTICS ================= -->
+    <section class="stats">
+        <div class="stat-box">
+            <h1>21</h1>
+            <p>Hand Landmarks Tracked</p>
+        </div>
+
+        <div class="stat-box">
+            <h1>220+</h1>
+            <p>Sign Vocabulary Words</p>
+        </div>
+
+        <div class="stat-box">
+            <h1>30 FPS</h1>
+            <p>Real-Time Detection</p>
+        </div>
+
+        <div class="stat-box">
+            <h1>100%</h1>
+            <p>Dual-Directional Coverage</p>
+        </div>
+    </section>
+
+    <!-- ================= ABOUT BRIEF ================= -->
+    <section class="about-home">
+        <h2>Bridging Communication Through Sign</h2>
+        <p>
+            SignBridge is built to empower seamless communication between deaf and hearing communities.
+            Whether converting live camera gestures into text sentences or translating written text into fluid 3D sign language avatar animations,
+            SignBridge delivers a complete, bidirectional sign language translation suite.
+        </p>
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                🤟 SignBridge <small style="font-weight: normal; font-size: 13px; color: #64748B;">| Bridging Communication Through Sign</small>
+            </div>
+            <div class="footer-text">
+                © 2026 SignBridge — Powered by Python, Flask, OpenCV, MediaPipe & Three.js
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

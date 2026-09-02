@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Sign | SignBridge</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="brand-top-bar">
+        <span>✦ <strong>SignBridge</strong> Text → Sign Translator</span>
+        <span class="tagline">— Convert Sentences into Static Sign Imagery & Video Clips</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="/" class="logo-container">
+            <span class="logo-icon">🤟</span>
+            <div class="logo-text-group">
+                <span class="logo-title">SignBridge</span>
+                <span class="logo-subtitle">Bridging Communication Through Sign</span>
+            </div>
+        </a>
+
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/recognition">Recognition</a></li>
+            <li><a href="/text-to-sign" class="active">Text to Sign</a></li>
+            <li><a href="/sign-animation">Sign Animation</a></li>
+            <li><a href="/word-dictionary">Word Dictionary</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-wrapper">
+        <section class="feature-card" style="text-align: center; max-width: 900px; margin: 0 auto 40px;">
+            <h2 style="font-family: var(--font-display); font-size: 32px; font-weight: 800; color: var(--color-text-main); margin-bottom: 8px;">
+                Text to Sign Language Translation
+            </h2>
+            <p style="color: var(--color-text-muted); font-size: 15px; margin-bottom: 24px;">
+                Enter English text below to instantly generate corresponding ASL sign images or motion video clips.
+            </p>
+
+            <form method="POST" style="max-width: 650px; margin: 0 auto;">
+                <div style="display: flex; justify-content: center; gap: 24px; margin-bottom: 20px; background: #F8FAFC; padding: 12px; border-radius: var(--radius-md); border: 1px solid #E2E8F0;">
+                    <label style="font-size: 14px; font-weight: 600; cursor: pointer; color: var(--color-text-main);">
+                        <input type="radio" name="mode" value="word" {% if mode != 'alphabet' %}checked{% endif %} style="margin-right: 6px;">
+                        Word-wise (whole-word signs)
+                    </label>
+
+                    <label style="font-size: 14px; font-weight: 600; cursor: pointer; color: var(--color-text-main);">
+                        <input type="radio" name="mode" value="alphabet" {% if mode == 'alphabet' %}checked{% endif %} style="margin-right: 6px;">
+                        Alphabet-wise (fingerspelled + facial expression)
+                    </label>
+                </div>
+
+                <div style="display: flex; gap: 12px; margin-bottom: 20px;">
+                    <input type="text" name="text" placeholder="Type words or sentences (e.g. Hello, please stay)..." required style="flex: 1; font-size: 16px; padding: 14px 20px;">
+                    <button type="submit" class="primary" style="white-space: nowrap;">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Convert Now
+                    </button>
+                </div>
+            </form>
+
+            <div style="margin-top: 16px; pt: 16px; border-top: 1px solid #E2E8F0;">
+                <a href="/start-text-to-sign" style="text-decoration: none;">
+                    <button type="button" class="secondary" style="font-size: 13px; padding: 8px 18px;">
+                        <i class="fa-solid fa-terminal"></i> Run Terminal Version
+                    </button>
+                </a>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="feature-card">
+            <h3 style="border-bottom: 1px solid #E2E8F0; padding-bottom: 12px; margin-bottom: 20px;">
+                Translation Output
+            </h3>
+
+            {% if mode == 'alphabet' %}
+
+                {% if tokens %}
+                    <div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 16px; padding: 10px 0;">
+                        {% for token in tokens %}
+                            {% if token.type == 'space' %}
+                                <div style="width: 32px; height: 100px; border-right: 2px dashed #CBD5E1; margin: 0 8px;"></div>
+                            {% else %}
+                                <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 12px; border-radius: 12px; text-align: center; box-shadow: var(--shadow-sm);">
+                                    <div style="font-weight: 800; font-size: 18px; color: var(--color-primary); margin-bottom: 6px;">{{ token.letter }}</div>
+
+                                    {% if token.hand_image %}
+                                        <img src="{{ url_for('static', filename='alphabet_images/' + token.hand_image) }}"
+                                             alt="{{ token.letter }} sign" width="100"
+                                             style="border-radius: 8px; border: 1px solid #CBD5E1; display: block; margin: 0 auto;">
+                                    {% else %}
+                                        <div style="width: 100px; height: 80px; font-size: 12px; color: #94A3B8; display: flex; align-items: center; justify-content: center;">no sign image</div>
+                                    {% endif %}
+
+                                    {% if token.expression_image %}
+                                        <img src="{{ url_for('static', filename='alphabet_expressions/' + token.expression_image) }}"
+                                             alt="{{ token.letter }} expression" width="54" height="54"
+                                             style="border: 2px solid var(--color-primary); border-radius: 50%; display: block; margin: 8px auto 0; object-fit: cover;">
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p style="color: var(--color-text-muted); text-align: center; padding: 30px 0;">Enter text above and click "Convert Now" to view sign language tokens.</p>
+                {% endif %}
+
+            {% else %}
+
+                {% if images %}
+                    <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 10px 0;">
+                        {% for item in images %}
+                            <div style="background: #F8FAFC; border: 1px solid #E2E8F0; padding: 14px; border-radius: 14px; text-align: center; box-shadow: var(--shadow-sm); width: 220px;">
+                                {% if item.type == 'video' %}
+                                    <video width="100%" height="140" controls preload="none" style="border-radius: 8px; background: #000; object-fit: cover;">
+                                        <source src="{{ url_for('word_clip', word=item.src) }}" type="video/mp4">
+                                    </video>
+                                {% else %}
+                                    <img src="{{ url_for('static', filename='sign_images/' + item.src) }}" alt="{{ item.word }}" width="100%" height="140" style="border-radius: 8px; object-fit: cover; border: 1px solid #CBD5E1;">
+                                {% endif %}
+
+                                <div style="font-weight: 700; font-size: 15px; color: var(--color-text-main); margin-top: 10px; text-transform: capitalize;">{{ item.word }}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p style="color: var(--color-text-muted); text-align: center; padding: 30px 0;">Enter text above and click "Convert Now" to view word sign clips.</p>
+                {% endif %}
+
+            {% endif %}
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                🤟 SignBridge <small style="font-weight: normal; font-size: 13px; color: #64748B;">| Bridging Communication Through Sign</small>
+            </div>
+            <div class="footer-text">
+                © 2026 SignBridge — Text to Sign Language Translation Engine
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Prefills the text box when arriving via a "Use in Text-to-Sign" link from the Word Dictionary page
+        window.addEventListener("DOMContentLoaded", () => {
+            const prefill = sessionStorage.getItem("prefillWord");
+            if (prefill) {
+                const input = document.querySelector('input[name="text"]');
+                if (input) input.value = prefill;
+                sessionStorage.removeItem("prefillWord");
+            }
+        });
+    </script>
+</body>
+</html>
