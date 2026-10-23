@@ -1,9 +1,10 @@
 import json
 import os
 import sys
-from flask import Flask, render_template, request, jsonify, send_from_directory, abort
 import subprocess
-import json
+from pathlib import Path
+
+from flask import Flask, render_template, request, jsonify, send_from_directory, abort
 from text_to_sign_web import convert_text
 import word_video_lookup
 
@@ -12,14 +13,48 @@ import gloss as sign_gloss  # noqa: E402
 import config as sign_animation_config  # noqa: E402
 import kozha as sign_kozha  # noqa: E402
 
+BASE_DIR = Path(__file__).resolve().parent
+
 app = Flask(__name__)
+app.config.update(
+    ENABLE_LOCAL_RECOGNITION=os.getenv("ENABLE_LOCAL_RECOGNITION", "false").lower()
+    in {"1", "true", "yes"},
+    MAX_CONTENT_LENGTH=16 * 1024,
+)
+
+
+def _read_json(path, fallback):
+    """Return a prediction file without exposing transient write errors."""
+    try:
+        with open(path, "r", encoding="utf-8") as file:
+            return json.load(file)
+    except (FileNotFoundError, json.JSONDecodeError, OSError):
+        return fallback
+
+
+def _start_local_recognizer(script, cwd=None):
+    if not app.config["ENABLE_LOCAL_RECOGNITION"]:
+        return jsonify({
+            "error": "Live webcam recognition is available only in the local desktop setup.",
+            "hint": "Set ENABLE_LOCAL_RECOGNITION=true when running this project locally.",
+        }), 503
+
+    script_path = Path(cwd or BASE_DIR) / script
+    if not script_path.is_file():
+        return jsonify({"error": f"Recognizer is not installed: {script}"}), 503
+
+    subprocess.Popen([sys.executable, script], cwd=str(cwd) if cwd else None)
+    return jsonify({"status": "started"})
+
+
+@app.get("/healthz")
+def healthz():
+    return jsonify({"status": "ok"})
+
+
 @app.route("/get_prediction")
 def get_prediction():
-
-    with open("prediction.json", "r") as f:
-        data = json.load(f)
-
-    return jsonify(data)
+    return jsonify(_read_json(BASE_DIR / "prediction.json", {"prediction": "Waiting..."}))
 
 @app.route("/")
 def home():
@@ -34,10 +69,9 @@ def recognition():
 
 
 
-@app.route("/start-recognition")
+@app.post("/start-recognition")
 def start_recognition():
-    subprocess.Popen([sys.executable, "predict_sign_terminal.py"])
-    return "Started"
+    return _start_local_recognizer("predict_sign_terminal.py")
 
 
 # ---------------- Word-Level Recognition (WLASL-based) ----------------
@@ -50,22 +84,15 @@ WORD_PREDICTION_FILE = os.path.join(
 )
 
 
-@app.route("/start-word-recognition")
+@app.post("/start-word-recognition")
 def start_word_recognition():
-    word_level_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "word_level")
-    subprocess.Popen([sys.executable, "predict_word_sign.py"], cwd=word_level_dir)
-    return "Started"
+    word_level_dir = BASE_DIR / "word_level"
+    return _start_local_recognizer("predict_word_sign.py", word_level_dir)
 
 
 @app.route("/get_word_prediction")
 def get_word_prediction():
-    if not os.path.exists(WORD_PREDICTION_FILE):
-        return jsonify({"prediction": "Waiting...", "sentence": ""})
-
-    with open(WORD_PREDICTION_FILE, "r") as f:
-        data = json.load(f)
-
-    return jsonify(data)
+    return jsonify(_read_json(WORD_PREDICTION_FILE, {"prediction": "Waiting...", "sentence": ""}))
 
 
 # ---------------- Alphabet (Fingerspelling) Recognition ----------------
@@ -78,22 +105,18 @@ ALPHABET_PREDICTION_FILE = os.path.join(
 )
 
 
-@app.route("/start-alphabet-recognition")
+@app.post("/start-alphabet-recognition")
 def start_alphabet_recognition():
-    alphabet_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "alphabet")
-    subprocess.Popen([sys.executable, "predict_alphabet_sign.py"], cwd=alphabet_dir)
-    return "Started"
+    alphabet_dir = BASE_DIR / "alphabet"
+    return _start_local_recognizer("predict_alphabet_sign.py", alphabet_dir)
 
 
 @app.route("/get_alphabet_prediction")
 def get_alphabet_prediction():
-    if not os.path.exists(ALPHABET_PREDICTION_FILE):
-        return jsonify({"letter": "", "word": "", "sentence": "", "expressions": []})
-
-    with open(ALPHABET_PREDICTION_FILE, "r") as f:
-        data = json.load(f)
-
-    return jsonify(data)
+    return jsonify(_read_json(
+        ALPHABET_PREDICTION_FILE,
+        {"letter": "", "word": "", "sentence": "", "expressions": []},
+    ))
 
 
 # ---------------- Word Dictionary (220-word WLASL dataset) ----------------
@@ -380,12 +403,9 @@ def text_to_sign():
     )
 
 
-@app.route("/start-text-to-sign")
+@app.post("/start-text-to-sign")
 def start_text_to_sign():
-
-    subprocess.Popen([sys.executable, "text_to_sign_terminal.py"])
-
-    return render_template("text_to_sign.html", images=[])
+    return _start_local_recognizer("text_to_sign_terminal.py")
 
 
 # ---------------- About ----------------
@@ -395,6 +415,7 @@ def about():
     return render_template("about.html")
 
 if __name__ == "__main__":
-    print("🚀 SignBridge Server running on http://127.0.0.1:5001 / http://localhost:5001")
-    app.run(host="0.0.0.0", port=5001, debug=True)
-    
+    port = int(os.getenv("PORT", "5001"))
+    debug = os.getenv("FLASK_DEBUG", "false").lower() in {"1", "true", "yes"}
+    print(f"🚀 SignBridge Server running on http://127.0.0.1:{port}")
+    app.run(host="0.0.0.0", port=port, debug=debug)

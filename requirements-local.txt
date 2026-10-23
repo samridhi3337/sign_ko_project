@@ -1,0 +1,12 @@
+# Optional local-only dependencies for webcam recognition and model training.
+-r requirements.txt
+
+numpy==1.24.3
+opencv-python==4.10.0.84
+mediapipe==0.10.21
+tensorflow-macos==2.13.0; sys_platform == "darwin"
+tensorflow==2.13.0; sys_platform != "darwin"
+scikit-learn
+pandas
+pygame
+pywhatkit

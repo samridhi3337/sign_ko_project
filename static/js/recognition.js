@@ -17,22 +17,35 @@ function showRecognitionTab(mode) {
     }
 }
 
-function startRecognition() {
+async function startRecognition(event) {
     const btn = event.currentTarget;
     if (btn) btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Camera Running...';
-    fetch("/start-recognition");
+    await startLocalRecognizer("/start-recognition", btn, "Start Recognition");
 }
 
-function startAlphabetRecognition() {
+async function startAlphabetRecognition(event) {
     const btn = event.currentTarget;
     if (btn) btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Camera Running...';
-    fetch("/start-alphabet-recognition");
+    await startLocalRecognizer("/start-alphabet-recognition", btn, "Start Alphabet Recognition");
 }
 
-function startWordRecognition() {
+async function startWordRecognition(event) {
     const btn = event.currentTarget;
     if (btn) btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Camera Running...';
-    fetch("/start-word-recognition");
+    await startLocalRecognizer("/start-word-recognition", btn, "Start 220-Word Motion Recognition");
+}
+
+async function startLocalRecognizer(url, btn, label) {
+    try {
+        const response = await fetch(url, { method: "POST" });
+        if (!response.ok) {
+            const data = await response.json();
+            throw new Error(data.error || "Unable to start recognition.");
+        }
+    } catch (error) {
+        if (btn) btn.innerHTML = `<i class="fa-solid fa-camera"></i> ${label}`;
+        window.alert(error.message);
+    }
 }
 
 // Format prediction display with confidence pill badge if present

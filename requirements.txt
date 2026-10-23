@@ -31,14 +31,5 @@
 # and `python -c "import tensorflow as tf; from tensorflow import keras"`)
 # before assuming it still works.
 
-flask
-numpy==1.24.3
-opencv-python==4.10.0.84
-mediapipe==0.10.21
-# tensorflow-macos is Apple Silicon/macOS specific. On Windows/Linux,
-# replace this one line with: tensorflow==2.13.0
-tensorflow-macos==2.13.0
-scikit-learn
-pandas
-pygame
-pywhatkit
+Flask>=3.0,<4.0
+gunicorn>=22.0,<24.0
